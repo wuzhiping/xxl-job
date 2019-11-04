@@ -36,8 +36,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 #source
 WORKDIR /opt
-ENV http_proxy http://10.17.255.19:8080
-ENV https_proxy http://10.17.255.19:8080
+#ENV http_proxy http://10.17.255.19:8080
+#ENV https_proxy http://10.17.255.19:8080
 RUN git clone https://github.com/xuxueli/xxl-job.git
 ENV http_proxy ""
 ENV https_proxy ""
@@ -54,7 +54,4 @@ COPY application.properties /opt/xxl-job/xxl-job-admin/src/main/resources/applic
 WORKDIR /opt/xxl-job
 RUN mvn clean install
 
-# CMD java -jar -Dfile.encoding=utf-8 agilebpm-spring-boot-samples/target/agilebpm-spring-boot-samples-1.2.6.jar
-
-# /opt/xxl-job/xxl-job-admin/target/xxl-job-admin-2.1.1-SNAPSHOT.jar
-# ENTRYPOINT ["sh","-c","java -jar /app.jar $PARAMS"]
+ENTRYPOINT ["sh","-c","java -jar /opt/xxl-job/xxl-job-admin/target/xxl-job-admin-2.1.1-SNAPSHOT.jar $PARAMS"]
