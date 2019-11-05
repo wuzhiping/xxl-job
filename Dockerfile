@@ -50,6 +50,8 @@ EXPOSE 8080
 
 
 COPY application.properties /opt/xxl-job/xxl-job-admin/src/main/resources/application.properties
+COPY executor.properties /opt/xxl-job/xxl-job-executor-samples/xxl-job-executor-sample-springboot/src/main/resources/application.properties
+
 #build
 WORKDIR /opt/xxl-job
 RUN mvn clean install
